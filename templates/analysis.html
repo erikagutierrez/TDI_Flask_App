@@ -27,12 +27,23 @@
   <br/>
   <h3><font face="Georgia">A Quick Primer on Opioid Use Disorder (OUD) and its Treatment</font></h3>
     <ul style="list-style-type:disc">
+      <br/>
         <li>OUD results from the misuse of opioids: oxycontin, vicodin, percocet, heroin, dilaudid, etc.</li>
-        <li>OUD is treated with "softer" forms of opioids: methadone, buprenorhpine, and naltrexone.</li>
-        <li>OUD is considered a lifelong illness by 
+        <li>OUD is treated with "softer" forms of opioids: methadone, buprenorhpine, and naltrexone. There are >10 FDA-approved medications for OUD.</li>
+        <li>OUD is considered a lifelong illness by the American Society of Addiction Medicine.
+          Patients are advised to continue with medication-assisted treatment for life.</li>
+        <li>Insurers have not covered addiction-related illness and its associated pharmacy cost until the Mental Health Parity Act of 1996 and extension in the Affordable Care Act. </li>
+        <li>Insurers reimburse healthcare providers based on federal and state guidelines, as well as insurer-provider individual agreements.</li>
+        <li>Insurance claims frequently result in provider-insurance company arbitration. Reimbursement can take 3-12 months.</li>
+        <li>Drug abuse is the <a href="https://www.nytimes.com/interactive/2017/06/05/upshot/opioid-epidemic-drug-overdose-deaths-are-rising-faster-than-ever.html">leading cause of accidental death</a> in the US.</li>
+        <li>Prevalence of OUD is estimated to be 1% in the commercial insurance population and <a href="https://www.ncbi.nlm.nih.gov/pubmed/14756195">2-4% in the Medicaid population.</a></li>
+        <li>Physicians need a special license from the DEA to prescribe methadone and buprenorphine.</li>
+        <li>Stark Business Model differences exist between Methadone and Buprenorphine.</li>
+        <li>Most drug addiction treatment centers do not accept insurance.</li>
     </ul>
-
-  <h3><font face="Georgia">Prescriptions for OUD Treatment</font></h3>
+  <br/>
+  <br/>
+  <h3><font face="Georgia">Prescriptions for OUD Treatment: Medicaid</font></h3>
   <h5><font face="Georgia">What happened between 2014 and 2015?</font></h5>
   <br/>
   <!--  render the bokeh plot -->
@@ -43,55 +54,52 @@
   <br/>
   <p> The Obama Administration and the Affordable Care Act successfully fought prior authorizations instated by insurers to put a throttle on OUD prescriptions made by healthcare providers.</p>
   <br/>
-  <p>Drug utilization data are reported by states for covered outpatient drugs that are paid for by state Medicaid agencies since the start of the Medicaid Drug Rebate Program. The data includes state, drug name, National Drug Code, number of prescriptions and dollars reimbursed. NEED TO EXPLAIN WHY WE NEED TO LOOK AT CATEGORICAL REPRESENTATION==graph2 OF THIS VARIABLE: # RX. WHAT EXPLAINS THIS NUMBER?</p>
   <br/>
   <h4><font face="Garamond">What brands of prescriptions are being written for Medicaid patients?</font></h4>
   <br/>
-  <p> THE ARTICLE ABOUT DRUG CO WARS: https://www.huffingtonpost.com/entry/as-manufacturer-of-leading-addiction-drug-comes-under_us_5811abb4e4b08301d33e058f</p>
   <br/>
-  <p>Buprenorphine is catching on. Why? What does this mean?</p>
-  <p> In 2014, The Obama Administration put pressure on insurers to increase the number of types of medications for OUD.</p>
-  <p> This graph shows that there is demand for treatment and an increase in growth for multiple pharmaceutical brands. Methadone continues to be the largest player, however, it has been Medicaid and FDA-approved for decades. MDs are also comfortable prescribing methadone due to its 40+ year history and have confidence in being reimbursed for its medical billing codes. </p>
-
-  <p> Notice 'Suboxone': it has suddenly jumped to close to 575,000 instances in 2015 from ~100,000 in 2014. We can assume that new patient demand is coming mainly from the diversity in new types of OUD-treatment products. </p>
-
-  <p> Let's look more closely at California. How many people have Opioid Use Disorder, and where are they located? </p>
   {{ script2|safe }}
   <div class = "bk_holder">
   {{ div2|safe }}
   </div>
   <br/>
-  <h4><font face="Georgia">Let's look at the epidemic in California.</font></h4>
   <br/>
-  <p>This is a heatmap of the prevalence of OUD. Clearly, it tracks population centers.</p>
+  <br/>
+  <h3><font face="Georgia">Let's look at the epidemic in California.</font></h3>
+  <br/>
+  <p>This is a heatmap of the prevalence of OUD. Hover over the map and use the Bokeh tools for geo-specific information.</p>
   <br/>
   {{ script3|safe }}
   <div class = "bk_holder">
   {{ div3|safe }}
   </div>
   <br/>
-  <p>Now let's look at treatment service availability:</p>
   <br/>
+  <br/>
+  <h3><font face="Georgia">California is experiencing an epidemic. Where are the healthcare providers? </font></h3>
+  <br/>
+  <p> Patient Waiting List Size is indicated by heatmap. Yellow values: &lt2,000;  Black: &gt10,000.</p>
   <br/>
   {{ script4|safe }}
   <div class = "bk_holder">
   {{ div4|safe }}
   </div>
   <br/>
-  <p> The color is blocked intentionally: yel(low) values ('<'2000 OUD persons) == a physicians' office can handle the population.
-    Black is where there is a population estimated '>'10,000.</p>
-  <p>    The number of prescriptions should include any prescription for which Medicaid paid a portion of the claim, as well as those prescriptions for which Medicaid paid the claim in full. FFS-The number of prescriptions reimbursed by the state Medicaid agency as outpatient drug claims during the quarter/year covered. MCO-The number of prescriptions dispensed as outpatient drug claims during the quarter/year covered.</p>
-  <p> https://www.medicaid.gov/federal-policy-guidance/downloads/cib-02-02-16.pdf. Medicaid patients are prescribed opioids at twice the rate as other patients, and their risk of overdose is three to six times higher than other patients</p>
-  <p> cost of suboxone: 2-3x that of methadone per year (methadone is 3000-3500)</p>
-  <p> **We summed the number of prescriptions for each drug over the 2014Q1-2015Q2 period and identified notable percentiles. Number of Prescriptions Percentile reflects how frequently prescribed each drug is, with respect to other Medicaid-reimbursed drugs, with 99th being the most prescribed. https://www.kff.org/report-section/medicaids-most-costly-outpatient-drugs-issue-brief/Medicaid's top 50 most expensive drugs: *We calculated average spending before rebates per prescription for each drug over the 2014Q1-2015Q2 period and identified notable percentiles. Medicaid Spending Per Prescription Percentile reflects how expensive each drug is before rebates at the prescription level, with respect to other Medicaid-reimbursed drugs, with 99th being the most expensive. </p>
+  <br/>
+  <br/>
+  <br/>
+  <h3><font face="Georgia">Who is providing the patient care? Individual physicians or large organizations? Are they incentivized differently?</font></h3>
   <div class = "bk_holder">
   <img src="{{url_for('static', filename='Org_diff.png')}}" style = "height: 600px; width: 600px; object-fit: contain;">
   </div>
-  <p>Ttest_indResult(statistic=-1.033223567637414, pvalue=0.3015473266056193)</p>
+  <p>There is no difference between reimbursement rates for Fee-for-Service and Managed Care Organizations. (p-value: .302)</p>
   <br/>
   <br/>
-  <!-- <img src="{{url_for('static', filename='drug_cost_diff.png')}}" style = "height: 600px; width: 600px; object-fit: contain;"> -->
   <br/>
+  <h3><font face="Georgia">Buprenorphine-based products are patient-preferred and pay the highest price. </font></h3>
+  <br/>
+  <p>Please hover and use tools on the right to interact with the figure.</p>
+  <p>Colors represent states. Bubble size represents the total amount of OUD prescriptions. The blue-green scale represents Suboxone; the yellow-dark purple scale represents Methadone. </p>
   <br/>
   {{ script5|safe }}
   <div class = "bk_holder">

@@ -1,19 +1,19 @@
 from flask import Flask, render_template, url_for, request
-from data import Articles
+# from data import Articles
 from bokeh.embed import components
 #graph1
-from bokeh.io import show, output_file
-from bokeh.models import ColumnDataSource, FactorRange
-from bokeh.palettes import Spectral6
-from bokeh.plotting import figure
-from bokeh.transform import factor_cmap
+# from bokeh.io import show, output_file
+# from bokeh.models import ColumnDataSource, FactorRange
+# from bokeh.palettes import Spectral6
+# from bokeh.plotting import figure
+# from bokeh.transform import factor_cmap
 
 # import sqlite3
 
 app = Flask(__name__)
 app.debug = True #this allows you to be able to refresh as you build the site rather than reloading each time.
 
-Articles = Articles()
+# Articles = Articles()
 
 @app.route('/') #create route for website.
 def home() :
@@ -27,13 +27,13 @@ def rationale() :
 def data() :
     return render_template('data.html')
 
-@app.route('/articles')
-def articles() :
-    return render_template('articles.html', articles = Articles)
-
-@app.route('/articles/<string:id>')
-def get_article(id) :
-    return render_template('get_article.html', id = id)
+# @app.route('/articles')
+# def articles() :
+#     return render_template('articles.html', articles = Articles)
+#
+# @app.route('/articles/<string:id>')
+# def get_article(id) :
+#     return render_template('get_article.html', id = id)
 
 @app.route('/analysis')
 def analysis() :
@@ -55,9 +55,6 @@ def analysis() :
     div_bubbles = open('static/graph_bubbles_div.html', 'r').read()
     return render_template('analysis.html', script1=script_years, div1=div_years, script2=script_multiRx, div2=div_multiRx, script3=script_caPrev, div3=div_caPrev, script4=script_caTG, div4=div_caTG, script5=script_bubbles, div5=div_bubbles)
 
-@app.route('/Figure1')
-def Figure1() :
-    return render_template('Figure1.html')
 
 @app.route('/executive_summary')
 def executive_summary() :
