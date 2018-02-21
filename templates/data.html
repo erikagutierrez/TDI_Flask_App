@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <br/>
+  <h5>Data Set Sources</h5>
+
+    <p>All data sets are publicly accessible.</p>
+
+    <p>2012, 2013, 2014, 2015, 2016, and 2017 <a href="https://data.medicaid.gov/browse?category=State+Drug+Utilization&limitTo=datasets">Medicaid State Drug Utilization Data</a> were accessed through the Center for Medicaid Services API.</p>
+
+    <ul style="list-style-type:disc">
+        <li><a href="https://dev.socrata.com/docs/endpoints.html">CMS API documentation</a>: (client = Socrata("data.medicaid.gov", None)), Socrata via SodaPy: .</li>
+        <li>Queries for the Top 10 FDA-Approved Medication-Assisted Treatments were conducted:
+
+          <div style="float: left; width: 50%;">
+          <ul>
+          <li>buprenorphine</li>
+          <li>butrans</li>
+          <li>zubsolv</li>
+          <li>methadone</li>
+          <li>naloxone</li>
+          </ul>
+          </div>
+          <div style="float: right; width: 50%;">
+          <ul>
+          <li>suboxone</li>
+          <li>bunavail</li>
+          <li>buprenex</li>
+          <li>probuphine</li>
+          <li>subutex</li>
+          </ul>
+          </div>
+
+        <li> [ex: results = client.get("f8sh-7iwd", content_type = "csv", where = "product_fda_list_name in " + "('buprenorphine','methadone','butrans','zubsolv','naloxone','suboxone','bunavail','buprenex','probuphine','subutex')".upper())].</li>
+        <li>CMS has a limit to the number of queries and dataframes. You can either get an API token or specify an extremely large LIMIT=100000000.</li>
+        <li>File Size, after decoded from JSON: 16KB, 32KB, 38KB, 630KB, 706KB, and 337KB, respectively by year.</li>
+    </ul>
+
+    <p>The list of X-waivered physicians, or physicians that are approved by the DEA to prescribe medication-assisted treatment for opioid use disorder, was obtained from the DHHS Agency, <a href="https://www.samhsa.gov/medication-assisted-treatment/physician-program-data/treatment-physician-locatorFile">Substance Abuse and Mental Health Service Administration</a>, as a .csv. Size: 3.8MB.
+
+    <p>The list of CA Opioid Overdose Deaths by County was obtained from the <a href="https://pdop.shinyapps.io/ODdash_v1/">California Healthcare Foundation</a> as .csv. (Make sure you download the State-Level data by County by 'OD'). File Size: 2KB</p>
+
+    <p>The census of the CA County population was obtained from the <a href="http://www.dof.ca.gov/Forecasting/Demographics/Estimates/">California Department of Finance</a> as .csv. File Size: 16.8 MB </p>
+
+    <p>The Medicaid Population Numbers were obtained from the <a href="https://www.kff.org/interactive/medicaid-state-fact-sheets/Kaiser">Kaiser Family Foundation</a>.</p>
+    <p>The US Population by State, was obtained from <a href= "https://www.census.gov/data/tables/2017/demo/popest/state-total.html">the US Census Bureau</a>.</p>
+<br/>
+<h5>Data Set Preprocessing</h5>
+
+<p>Please see <a href="https://github.com/erikagutierrez">my GitHub</a> for detailed methodology and code.
+
+<p><b>Medicaid State Drug Utilization Data</b>: API queries were received as JSON and then decoded into a .csv. The .csv files were directly imported into SQLite3,
+  where the data underwent cleaning: detecting/correcting/standardizing typographical errors (e.g. METHADONE vs. methadone); cross-validating the API queries
+  vs the original database features w/ CMS' online data navigation tools.</p>
+<p>CMS suppresses data: "As CMS is obligated by the federal Privacy Act, 5 U.S.C. Section 552a and the HIPAA Privacy Rule, 45 C.F.R Parts 160 and 164, to protect the privacy of individual beneficiaries and other persons, all direct identifiers have been removed and data that are less than eleven (11) counts are suppressed. A checkmark in the "Suppression Used" column notes suppressed data. CMS applies counter or secondary suppression in cases where only one prescription is suppressed for primary reasons (e.g., one prescription in a state). Also, if one sub-group (e.g., number of prescriptions) is suppressed, then the other sub-groups are suppressed." (CMS, Drug Utilization Data Field Descriptions (2017))</p>
+<p>Due to the suppression of records, missing dataframes occured in most states each year. There is no way to infer a parameter from the information given.</p>
+<p><b>X-Waivered Physician Database</b>: SQLite3 data cleansing for typographical errors, duplicate entries, county name errors (e.g. Gray Harbor is not a county in CA), and address duplication. This data is not updated tightly by SAMHSA other than to cross-reference legal power to prescribe. For example, physicians that decide to discontinue treating OUD will still appear on the list.</p>
+<p><b>List of CA Opioid Overdose Deaths</b>: The data was clean. This data is very conservative: the death certificate had to state opioids as the cause of death.</p>
+<p><b>CA County Census, US Census, & Kaiser Family Foundation data sets</b>: No cleaning necessary.</p>
+
+<br/>
+<h5>Feature Selection</h5>
+
+
+
+{% endblock %}
